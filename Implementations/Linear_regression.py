@@ -17,7 +17,7 @@ class LinearRegression:
         self.bias = 0
 
         for _ in range(self.n_iterations):
-            y_pred = np.dot(X,self.weights) + bias
+            y_pred = np.dot(X,self.weights) + self.bias
 
             derivw = (1/n_samples) * np.dot(X.T,(y_pred-y))
             derivb = (1/n_samples) * np.sum(y_pred-y)
