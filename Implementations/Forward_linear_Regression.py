@@ -45,6 +45,14 @@ def loss_gradients(Forward_info,weights):
 
     return loss_gradients
 
+loss_grads = loss_gradients(Forward_info,weights)
+
+for key in weights.keys():
+    # applying weight update rule.
+    
+    weights[key] -= learning_rate * loss_grads[key]
+
+
 
 
 
