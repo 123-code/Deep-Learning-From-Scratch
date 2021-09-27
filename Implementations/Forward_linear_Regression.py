@@ -24,5 +24,29 @@ def forward_linear_regression(x_batch,y_batch,weights):
 
     return loss,Forward_info
 
+# calculating model gradients.
+def loss_gradients(Forward_info,weights):
+
+    # computing partial derivatives
+    # derivative with respect to y 
+
+    d_y = 2*(Forward_info['y'] - Forward_info['prediction'])
+    # bias derivative, a matrix of ones.
+    d_o = np.ones_like(Forward_info['Output'])
+    d_x = np.transpose(Forward_info('X'))
+    d_b = np.ones.like(Forward_info['B'])
+    dldn = d_y * d_o
+    dLdW = np.dot(d_b,dldn)
+
+
+    Loss_Gradients = {}
+    Loss_Gradients['W'] = dLdW
+    Loss_Gradients['B'] = dldn
+
+    return loss_gradients
+
+
+
+
 
 
