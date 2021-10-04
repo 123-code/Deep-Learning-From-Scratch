@@ -2,6 +2,7 @@ import numpy as np
 from numpy import ndarray
 
 B = []
+weights = []
 def forward_linear_regression(x_batch,y_batch,weights):
     assert x_batch.shape[0] == y_batch.shape[0]
     
@@ -33,7 +34,7 @@ def loss_gradients(Forward_info,weights):
     d_y = 2*(Forward_info['y'] - Forward_info['prediction'])
     # bias derivative, a matrix of ones.
     d_o = np.ones_like(Forward_info['Output'])
-    d_x = np.transpose(Forward_info('X'))
+    d_x = np.transpose(Forward_info('x'))
     d_b = np.ones.like(Forward_info['B'])
     dldn = d_y * d_o
     dLdW = np.dot(d_b,dldn)
@@ -52,6 +53,21 @@ for key in weights.keys():
     
     weights[key] -= learning_rate * loss_grads[key]
 
+
+def predict(X:ndarray,weights: Dict[str:ndarray]):
+    # generating LR predictions.
+    W_sum = np.dot(X,weights['x'])
+    Prediction = W_sum + B[0]
+    return prediction
+    
+print(predict(Forward_info['x'],weights))
+
+# to compare predicted values with actual training data.
+def mae(preds:ndarray,actuals:ndarray):
+    return np.mean(np.abs(preds-actuals))
+    
+
+    
 
 
 
